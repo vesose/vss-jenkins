@@ -1,7 +1,8 @@
 FROM golang:alpine
+ARG GOLANGCI_LINT_VERSION=1.15.0
 RUN adduser -u 1000 -D jenkins && \
   wget -O - -q https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh \
-  | ash -s v1.12.5 && \
+  | ash -s v$GOLANGCI_LINT_VERSION && \
   apk add --no-cache make git protobuf && \
   go get -u github.com/golang/protobuf/protoc-gen-go && \
   go get github.com/gogo/protobuf/proto && \
